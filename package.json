@@ -1,0 +1,53 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint"
+  },
+  "name": "node-dragonpay",
+  "author": "Alexis Munsayac",
+  "module": "dist/node-dragonpay.esm.js",
+  "devDependencies": {
+    "@types/crypto-js": "^3.1.43",
+    "@types/hapi__joi": "^16.0.12",
+    "@types/jest": "^25.1.3",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-import-resolver-node": "^0.3.2",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "tsdx": "^0.12.3",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
+  },
+  "description": "Coroutines in TS and JS",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LXSMNSYC/node-dragonpay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LXSMNSYC/node-dragonpay/issues"
+  },
+  "homepage": "https://github.com/LXSMNSYC/node-dragonpay",
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.0",
+    "crypto-js": "^4.0.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "query-string": "^6.11.1"
+  }
+}

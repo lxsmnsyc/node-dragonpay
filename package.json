@@ -12,7 +12,7 @@
     "test": "tsdx test",
     "lint": "tsdx lint"
   },
-  "name": "node-dragonpay",
+  "name": "@lxsmnsyc/node-dragonpay",
   "author": "Alexis Munsayac",
   "module": "dist/node-dragonpay.esm.js",
   "devDependencies": {

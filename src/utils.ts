@@ -5,6 +5,7 @@ export const PRODUCTION_URL = {
   MerchantRequest: 'https://gw.dragonpay.ph/MerchantRequest.aspx',
   CollectByRefNo: 'https://gw.dragonpay.ph/api/collect/v1/',
   CollectByTxnId: 'https://gw.dragonpay.ph/api/collect/v1/txnid/',
+  EmailInstruction: 'https://gw.dragonpay.ph/Bank/GetEmailInstruction.aspx?format=json&',
 };
 
 export const TEST_URL = {
@@ -12,6 +13,7 @@ export const TEST_URL = {
   MerchantRequest: 'https://test.dragonpay.ph/MerchantRequest.aspx',
   CollectByRefNo: 'https://test.dragonpay.ph/api/collect/v1/',
   CollectByTxnId: 'https://test.dragonpay.ph/api/collect/v1/txnid/',
+  EmailInstruction: 'https://test.dragonpay.ph/Bank/GetEmailInstruction.aspx?format=json&',
 };
 
 export const URLS = IS_PRODUCTION ? PRODUCTION_URL : TEST_URL;

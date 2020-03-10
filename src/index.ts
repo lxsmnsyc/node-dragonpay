@@ -1,5 +1,3 @@
-import Joi from '@hapi/joi';
-
 /**
  * @license
  * MIT License
@@ -27,62 +25,18 @@ import Joi from '@hapi/joi';
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-/**
- * 5.4.1.2 Pre-selecting Payment ChannelsDragonpay has very basic support
- * to allow merchant to go directly to a payment channel without having
- * to select it from the dropdown list.  The following are sample processor
- * id’swhich can be used to go straight to the selection:
- */
-export type PaymentChannel =
-  | 'BAYD'
-  | 'BITC'
-  | 'CC'
-  | 'CEBL'
-  | 'CUP'
-  | 'DPAY'
-  | 'ECPY'
-  | 'GCSH'
-  | 'LBC'
-  | 'PYPL'
-  | 'MLH'
-  | 'RDS'
-  | 'SMR'
-  | 'BOL'
-  | '711';
+export { default as requestPayment } from './requests/merchant-request';
+export { default as receivePaymentResponse } from './requests/payment-response';
+export { default as getTransactionStatus } from './requests/get-transaction-status';
+export { default as cancelTransaction } from './requests/cancel-transaction';
+export * from './requests/collect';
+export { default as getEmailInstruction } from './requests/get-email-instruction';
 
-export const PAYMENT_CHANNEL = Joi.string()
-  .trim()
-  .valid(
-    'BAYD',
-    'BITC',
-    'CC',
-    'CEBL',
-    'CUP',
-    'DPAY',
-    'ECPY',
-    'GCSH',
-    'LBC',
-    'PYPL',
-    'MLH',
-    'RDS',
-    'SMR',
-    'BOL',
-    '711',
-  )
-  .optional();
-
-/**
- * 5.4.1.1 Filtering Payment Channels
- *
- * Dragonpay payment channels are grouped together by type –ex.
- * Online banking, Over-the-Counter/ATM, etc.  Merchants can
- * programmatically instruct Dragonpay which grouping to show
- * when the user is redirected to the payment gateway by using
- * the “mode” parameter.
- */
-export type PaymentMode = number;
-
-export const PAYMENT_MODE = Joi.number()
-  .positive()
-  .max(4095)
-  .optional();
+export { DragonpayCollectResponse } from './schema/collect';
+export { Currency } from './schema/currency';
+export * from './schema/error-codes';
+export { DragonpayEmailInstruction } from './schema/instruction';
+export { DragonpayMerchantInput, DragonpayMerchantResponse } from './schema/merchant-request';
+export * from './schema/payment-channels';
+export { DragonpayPaymentInput, DragonpayPaymentResponse } from './schema/payment-request';
+export * from './schema/status';

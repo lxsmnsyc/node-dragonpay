@@ -58,6 +58,13 @@ export interface DragonpayPaymentInput {
    */
   email: string;
 
+  /**
+   * [OPTIONAL] value that will be posted back to
+   * merchant url when completed
+   */
+  param1: string;
+  param2: string;
+
   processId?: PaymentChannel;
   mode?: PaymentMode;
 }
@@ -94,6 +101,14 @@ export interface DragonpayPaymentRequest {
    * A sha1 checksum digest of all the parameters along with the secret key.
    */
   digest: string;
+
+  /**
+   * [OPTIONAL] value that will be posted back to
+   * merchant url when completed
+   */
+  param1: string;
+  param2: string;
+
   procid?: PaymentChannel;
   mode?: PaymentMode;
 }
@@ -104,6 +119,8 @@ export interface DragonpayPaymentResponse {
   status: StatusCode;
   message: string;
   digest: string;
+  param1: string;
+  param2: string;
 }
 
 export const PAYMENT_REQUEST = Joi.object({
@@ -127,6 +144,10 @@ export const PAYMENT_REQUEST = Joi.object({
     .trim()
     .max(40)
     .required(),
+  param1: Joi.string()
+    .optional(),
+  param2: Joi.string()
+    .optional(),
   processId: PAYMENT_CHANNEL,
   mode: PAYMENT_MODE,
 });

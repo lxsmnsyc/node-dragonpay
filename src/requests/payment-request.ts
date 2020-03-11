@@ -83,6 +83,8 @@ export default async function requestPayment(
     description: value.description,
     email: value.email,
     digest: hash,
+    param1: value.param1,
+    param2: value.param2,
     procid: value.processId,
     mode: value.mode,
   };

@@ -42,9 +42,6 @@
   },
   "homepage": "https://github.com/LXSMNSYC/node-dragonpay",
   "private": false,
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "dependencies": {
     "@hapi/joi": "^17.1.0",
     "crypto-js": "^4.0.0",

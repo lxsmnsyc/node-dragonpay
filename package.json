@@ -32,7 +32,7 @@
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   },
-  "description": "Coroutines in TS and JS",
+  "description": "Dragonpay in JS",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LXSMNSYC/node-dragonpay.git"

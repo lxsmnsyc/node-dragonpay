@@ -31,6 +31,7 @@ import {
   DragonpayPaymentRequest, PAYMENT_REQUEST, DragonpayPaymentInput,
 } from '../schema/payment-request';
 import { URLS } from '../utils';
+import { PAYMENT_CHANNELS } from '../schema/payment-channels';
 
 function generateInputMessage(
   secretkey: string,
@@ -72,6 +73,20 @@ export default async function requestPayment(
    */
   const hash = SHA1(message).toString();
 
+  if (value.processId) {
+    const { minTime, maxTime } = PAYMENT_CHANNELS[value.processId];
+
+    const currentTime = new Date();
+    const currentTimeIndex = currentTime.getHours() * 100 + currentTime.getMinutes();
+
+    if (minTime && currentTimeIndex < minTime) {
+      throw new RangeError('Requested transaction cannot be processed currently.');
+    }
+    if (maxTime && currentTimeIndex > maxTime) {
+      throw new RangeError('Requested transaction cannot be processed currently.');
+    }
+  }
+
   /**
    * Transform payload to request
    */
@@ -86,7 +101,6 @@ export default async function requestPayment(
     param1: value.param1,
     param2: value.param2,
     procid: value.processId,
-    mode: value.mode,
   };
 
   return `${URLS.Payment}?${queryString.stringify(request)}`;

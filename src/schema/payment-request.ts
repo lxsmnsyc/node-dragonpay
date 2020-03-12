@@ -29,7 +29,7 @@ import Joi from '@hapi/joi';
 import { Currency, CURRENCY } from './currency';
 import { StatusCode } from './status';
 import {
-  PaymentChannel, PaymentMode, PAYMENT_CHANNEL, PAYMENT_MODE,
+  PaymentChannel, PAYMENT_CHANNEL,
 } from './payment-channels';
 
 export interface DragonpayPaymentInput {
@@ -66,7 +66,6 @@ export interface DragonpayPaymentInput {
   param2: string;
 
   processId?: PaymentChannel;
-  mode?: PaymentMode;
 }
 
 /**
@@ -110,7 +109,6 @@ export interface DragonpayPaymentRequest {
   param2: string;
 
   procid?: PaymentChannel;
-  mode?: PaymentMode;
 }
 
 export interface DragonpayPaymentResponse {
@@ -149,5 +147,4 @@ export const PAYMENT_REQUEST = Joi.object({
   param2: Joi.string()
     .optional(),
   processId: PAYMENT_CHANNEL,
-  mode: PAYMENT_MODE,
 });

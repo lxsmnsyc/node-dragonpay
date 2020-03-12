@@ -25,7 +25,8 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-export { default as requestPayment } from './requests/merchant-request';
+export { default as requestMerchant } from './requests/merchant-request';
+export { default as requestPayment } from './requests/payment-request';
 export { default as receivePaymentResponse } from './requests/payment-response';
 export { default as getTransactionStatus } from './requests/get-transaction-status';
 export { default as cancelTransaction } from './requests/cancel-transaction';

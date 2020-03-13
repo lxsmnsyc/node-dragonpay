@@ -62,8 +62,8 @@ export interface DragonpayPaymentInput {
    * [OPTIONAL] value that will be posted back to
    * merchant url when completed
    */
-  param1: string;
-  param2: string;
+  param1?: string;
+  param2?: string;
 
   processId?: PaymentChannel;
 }
@@ -105,8 +105,8 @@ export interface DragonpayPaymentRequest {
    * [OPTIONAL] value that will be posted back to
    * merchant url when completed
    */
-  param1: string;
-  param2: string;
+  param1?: string;
+  param2?: string;
 
   procid?: PaymentChannel;
 }

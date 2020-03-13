@@ -42,6 +42,11 @@ export interface PaymentMethod {
 }
 
 export type PaymentChannel =
+  | 'BOG'
+  | 'BOGX'
+  | 'BDO'
+  | 'CBC'
+  | 'LBPA'
   | 'BPI'
   | 'BPIB'
   | 'MAYB'
@@ -74,20 +79,114 @@ export type PaymentChannel =
   | 'RDP'
   | 'RLNT';
 
+export type PaymentGroupType =
+  | 'ONLINE_BANKING_OR_E_WALLET'
+  | 'OVER_THE_COUNTER_OR_ATM_BANKING'
+  | 'OVER_THE_COUNTER_OTHERS';
+
+export interface PaymentGroup {
+  description: string;
+  channels: PaymentChannel[];
+}
+
+export type PaymentGroups = {
+  [key in PaymentGroupType]: PaymentGroup;
+}
+
 export type PaymentMethods = {
   [key in PaymentChannel]: PaymentMethod;
+}
+
+export const PAYMENT_GROUPS: PaymentGroups = {
+  ONLINE_BANKING_OR_E_WALLET: {
+    description: 'Online Banking/E Wallet',
+    channels: [
+      'BOG',
+      'BDO',
+      'CBC',
+      'LBPA',
+      'BPI',
+      'BPIB',
+      'MAYB',
+      'RSB',
+    ],
+  },
+  OVER_THE_COUNTER_OR_ATM_BANKING: {
+    description: 'Over-the-Counter/ATM Banking',
+    channels: [
+      'BOGX',
+      'BDRX',
+      'BPXB',
+      'MBXB',
+      'BNRX',
+      'AUB',
+      'CBCX',
+      'EWBX',
+      'LBXB',
+      'PNBB',
+      'PNXB',
+      'RCXB',
+      'RSBB',
+      'RSXB',
+      'SBCA',
+      'SBCB',
+      'UBXB',
+      'UCXB',
+    ],
+  },
+  OVER_THE_COUNTER_OTHERS: {
+    description: 'Over-the-Counter Others',
+    channels: [
+      'BAYD',
+      'LBC',
+      'SMR',
+      'CEBL',
+      'RDS',
+      'ECPY',
+      'PLWN',
+      'POSB',
+      'RDP',
+      'RLNT',
+    ],
+  },
 };
 
 export const PAYMENT_CHANNELS: PaymentMethods = {
+  BOG: {
+    name: 'Bogus Bank',
+    description: 'Use your Bogus Bank Online Banking account to make a payment (TEST ONLY).',
+  },
+  BOGX: {
+    name: 'Bogus Bank Over-The-Counter',
+    description: 'Deposit your payment over-the-counter at any Bogus Bank branch worldwide (TEST ONLY).',
+  },
+  BDO: {
+    name: 'BDO Internet Banking',
+    description: 'Use your BDO Retail Internet Banking (RIB) account to make a payment. Read our BDO RIB guide for more details.',
+    minTime: 600,
+    maxTime: 2130,
+  },
+  CBC: {
+    name: 'Chinabank Online',
+    description: 'Use your Chinabank Online Banking account to make a payment.',
+    minTime: 600,
+    maxTime: 2100,
+  },
+  LBPA: {
+    name: 'Landbank ATM Online',
+    description: 'Pay using your Landbank ATM account at the Landbank ePaymentPortal. Landbank charges a PHP10.00 service fee. Visit our How-To page for more details',
+    minTime: 300,
+    maxTime: 2130,
+  },
   BPI: {
     name: 'BPI ExpressOnline/Mobile (Fund Transfer)',
-    description: '',
+    description: 'Use your BPI ExpressOnline/Mobile (EOLM) Banking account to make a Fund Transfer. Choose this option only if you have previously registered Dragonpay for 3rd Party Fund Transfer or enabled Fund Transfer to Anyone. A P15 Service Fee and a small random verification fee is added.',
     minTime: 400,
     maxTime: 2330,
   },
   BPIB: {
     name: 'BPI ExpressOnline (Bills Payment)',
-    description: '',
+    description: 'Use your BPI ExpressOnline (EOL) Banking account to make a bills payment. ExpressMobile Bills Payment is NOT supported. NOTE: A P15.00 Service Fee will be added.',
     minTime: 400,
     maxTime: 2330,
   },
@@ -213,6 +312,11 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
 export const PAYMENT_CHANNEL = Joi.string()
   .trim()
   .valid(
+    'BOG',
+    'BDO',
+    'BOGX',
+    'CBC',
+    'LBPA',
     'BPI',
     'BPIB',
     'MAYB',

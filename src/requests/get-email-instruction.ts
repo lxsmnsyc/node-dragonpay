@@ -29,10 +29,14 @@ import unfetch from 'isomorphic-unfetch';
 import { URLS } from '../utils';
 import { DragonpayCollectResponse } from '../schema/collect';
 
-export default async function getEmailTransaction(
+export function getEmailInstructionURL(refno: string, json: boolean): string {
+  return `${URLS.EmailInstruction}?refno=${refno}${json ? '&format=json' : ''}`;
+}
+
+export async function getEmailInstruction(
   refno: string,
 ): Promise<DragonpayCollectResponse> {
-  const response = await unfetch(`${URLS.EmailInstruction}&refno=${refno}`);
+  const response = await unfetch(getEmailInstructionURL(refno, true));
   const data = await response.json();
 
   return data;

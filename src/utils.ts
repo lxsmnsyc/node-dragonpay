@@ -5,7 +5,7 @@ export const PRODUCTION_URL = {
   MerchantRequest: 'https://gw.dragonpay.ph/MerchantRequest.aspx',
   CollectByRefNo: 'https://gw.dragonpay.ph/api/collect/v1/',
   CollectByTxnId: 'https://gw.dragonpay.ph/api/collect/v1/txnid/',
-  EmailInstruction: 'https://gw.dragonpay.ph/Bank/GetEmailInstruction.aspx?format=json&',
+  EmailInstruction: 'https://gw.dragonpay.ph/Bank/GetEmailInstruction.aspx',
 };
 
 export const TEST_URL = {

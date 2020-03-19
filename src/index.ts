@@ -31,7 +31,7 @@ export { default as receivePaymentResponse } from './requests/payment-response';
 export { default as getTransactionStatus } from './requests/get-transaction-status';
 export { default as cancelTransaction } from './requests/cancel-transaction';
 export * from './requests/collect';
-export { default as getEmailInstruction } from './requests/get-email-instruction';
+export * from './requests/get-email-instruction';
 
 export { DragonpayCollectResponse } from './schema/collect';
 export { Currency } from './schema/currency';

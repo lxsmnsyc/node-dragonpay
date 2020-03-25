@@ -13,7 +13,7 @@ export const TEST_URL = {
   MerchantRequest: 'https://test.dragonpay.ph/MerchantRequest.aspx',
   CollectByRefNo: 'https://test.dragonpay.ph/api/collect/v1/',
   CollectByTxnId: 'https://test.dragonpay.ph/api/collect/v1/txnid/',
-  EmailInstruction: 'https://test.dragonpay.ph/Bank/GetEmailInstruction.aspx?format=json&',
+  EmailInstruction: 'https://test.dragonpay.ph/Bank/GetEmailInstruction.aspx',
 };
 
 export const URLS = IS_PRODUCTION ? PRODUCTION_URL : TEST_URL;

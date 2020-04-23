@@ -30,7 +30,7 @@ import queryString from 'query-string';
 import {
   DragonpayPaymentRequest, PAYMENT_REQUEST, DragonpayPaymentInput,
 } from '../schema/payment-request';
-import { URLS } from '../utils';
+import { getBaseURLS } from '../utils';
 import { PAYMENT_CHANNELS } from '../schema/payment-channels';
 
 function generateInputMessage(
@@ -103,5 +103,5 @@ export default async function requestPayment(
     procid: value.processId,
   };
 
-  return `${URLS.Payment}?${queryString.stringify(request)}`;
+  return `${getBaseURLS().Payment}?${queryString.stringify(request)}`;
 }

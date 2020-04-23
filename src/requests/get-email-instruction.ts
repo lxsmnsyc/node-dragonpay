@@ -26,11 +26,11 @@
  * @copyright Alexis Munsayac 2020
  */
 import unfetch from 'isomorphic-unfetch';
-import { URLS } from '../utils';
+import { getBaseURLS } from '../utils';
 import { DragonpayCollectResponse } from '../schema/collect';
 
 export function getEmailInstructionURL(refno: string, json: boolean): string {
-  return `${URLS.EmailInstruction}?refno=${refno}${json ? '&format=json' : ''}`;
+  return `${getBaseURLS().EmailInstruction}?refno=${refno}${json ? '&format=json' : ''}`;
 }
 
 export async function getEmailInstruction(

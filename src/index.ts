@@ -41,3 +41,5 @@ export { DragonpayMerchantInput, DragonpayMerchantResponse } from './schema/merc
 export * from './schema/payment-channels';
 export { DragonpayPaymentInput, DragonpayPaymentResponse } from './schema/payment-request';
 export * from './schema/status';
+
+export { useProduction } from './utils';

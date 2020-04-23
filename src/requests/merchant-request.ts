@@ -30,7 +30,7 @@ import queryString from 'query-string';
 import {
   DragonpayMerchantInput, MERCHANT_REQUEST, DragonpayMerchantRequest, DragonpayMerchantResponse,
 } from '../schema/merchant-request';
-import { URLS } from '../utils';
+import { getBaseURLS } from '../utils';
 
 export default async function requestMerchant(
   payload: DragonpayMerchantInput,
@@ -44,7 +44,7 @@ export default async function requestMerchant(
     merchantpwd: value.merchantPassword,
   };
 
-  const data = await unfetch(`${URLS.MerchantRequest}?${queryString.stringify(request)}`);
+  const data = await unfetch(`${getBaseURLS().MerchantRequest}?${queryString.stringify(request)}`);
   const result: DragonpayMerchantResponse = await data.json();
 
   return result;

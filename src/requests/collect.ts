@@ -26,18 +26,18 @@
  * @copyright Alexis Munsayac 2020
  */
 import unfetch from 'isomorphic-unfetch';
-import { URLS } from '../utils';
+import { getBaseURLS } from '../utils';
 import { DragonpayCollectResponse } from '../schema/collect';
 
 export async function collectByRefNo(refno: string): Promise<DragonpayCollectResponse> {
-  const response = await unfetch(`${URLS.CollectByRefNo}${refno}`);
+  const response = await unfetch(`${getBaseURLS().CollectByRefNo}${refno}`);
   const data = await response.json();
 
   return data;
 }
 
 export async function collectByTransactionId(txnid: string): Promise<DragonpayCollectResponse> {
-  const response = await unfetch(`${URLS.CollectByRefNo}${txnid}`);
+  const response = await unfetch(`${getBaseURLS().CollectByRefNo}${txnid}`);
   const data = await response.json();
 
   return data;

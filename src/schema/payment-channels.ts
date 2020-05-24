@@ -39,6 +39,7 @@ export interface PaymentMethod {
   description: string;
   minTime?: number;
   maxTime?: number;
+  devOnly?: boolean;
 }
 
 export type PaymentChannel =
@@ -77,7 +78,16 @@ export type PaymentChannel =
   | 'PLWN'
   | 'POSB'
   | 'RDP'
-  | 'RLNT';
+  | 'RLNT'
+  | 'MBTC'
+  | 'PSB'
+  | 'RCBC'
+  | 'UBPB'
+  | 'UCPB'
+  | 'BITC'
+  | 'GRPY'
+  | 'I2I'
+  | 'GCSH';
 
 export type PaymentGroupType =
   | 'ONLINE_BANKING_OR_E_WALLET'
@@ -109,6 +119,14 @@ export const PAYMENT_GROUPS: PaymentGroups = {
       'BPIB',
       'MAYB',
       'RSB',
+      'MBTC',
+      'PSB',
+      'RCBC',
+      'UBPB',
+      'UCPB',
+      'BITC',
+      'GRPY',
+      'I2I',
     ],
   },
   OVER_THE_COUNTER_OR_ATM_BANKING: {
@@ -132,6 +150,7 @@ export const PAYMENT_GROUPS: PaymentGroups = {
       'SBCB',
       'UBXB',
       'UCXB',
+      'I2I',
     ],
   },
   OVER_THE_COUNTER_OTHERS: {
@@ -147,6 +166,7 @@ export const PAYMENT_GROUPS: PaymentGroups = {
       'POSB',
       'RDP',
       'RLNT',
+      'GCSH',
     ],
   },
 };
@@ -155,16 +175,19 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
   BOG: {
     name: 'Bogus Bank',
     description: 'Use your Bogus Bank Online Banking account to make a payment (TEST ONLY).',
+    devOnly: true,
   },
   BOGX: {
     name: 'Bogus Bank Over-The-Counter',
     description: 'Deposit your payment over-the-counter at any Bogus Bank branch worldwide (TEST ONLY).',
+    devOnly: true,
   },
   BDO: {
     name: 'BDO Internet Banking',
     description: 'Use your BDO Retail Internet Banking (RIB) account to make a payment. Read our BDO RIB guide for more details.',
     minTime: 600,
     maxTime: 2130,
+    devOnly: true,
   },
   CBC: {
     name: 'Chinabank Online',
@@ -189,6 +212,7 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
     description: 'Use your BPI ExpressOnline (EOL) Banking account to make a bills payment. ExpressMobile Bills Payment is NOT supported. NOTE: A P15.00 Service Fee will be added.',
     minTime: 400,
     maxTime: 2330,
+    devOnly: true,
   },
   MAYB: {
     name: 'Maybank Online Banking',
@@ -221,6 +245,7 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
   CBCX: {
     name: 'Chinabank ATM/Cash Payment',
     description: 'Deposit your payment over-the-counter (OTC) at any Chinabank branch or ATM nationwide. Branches inside malls are open Saturdays. Provincial branches may charge handling fee for OTC. There are no charges for ATM payments.',
+    devOnly: true,
   },
   EWBX: {
     name: 'Eastwest Bank Online/Cash Payment',
@@ -249,10 +274,12 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
   RSXB: {
     name: 'RCBC Savings Cash Payment',
     description: 'Deposit your payment over-the-counter at any RCBC Savings Bank branch nationwide. NOTE: A P25.00 Service Fee will be added.',
+    devOnly: true,
   },
   SBCA: {
     name: 'Security Bank ATM Bills Payment',
     description: 'Pay at any Security Bank ATM using Bills Payment. Payments are processed end of day. NOTE: A P50 Service Fee will be added. Choose a different bank if you do not agree to this fee.',
+    devOnly: true,
   },
   SBCB: {
     name: 'Security Bank Cash Payment',
@@ -297,6 +324,7 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
   POSB: {
     name: 'Posible Partners',
     description: 'Pay at various Posible partners including Family Mart and Phoenix gas stations',
+    devOnly: true,
   },
   RDP: {
     name: 'RD Pawnshop',
@@ -305,6 +333,42 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
   RLNT: {
     name: 'Ruralnet Banks and Coops',
     description: 'Pay at any rural bank or cooperative affiliated with RuralNet',
+  },
+  MBTC: {
+    name: 'Metrobank Direct',
+    description: 'Use your Metrobankdirect Online Banking account to make a payment.',
+  },
+  PSB: {
+    name: 'PSBank Online',
+    description: 'Pay using PSBank Online. Payments are processed next day.',
+  },
+  RCBC: {
+    name: 'RCBC Online Banking',
+    description: 'Use your RCBC AccessOne Online Banking account to make a payment. NOTE: A P5.00 Service Fee will be added.',
+  },
+  UBPB: {
+    name: 'UnionBank Internet Banking',
+    description: 'Use your Unionbank Online Banking account to make a payment. There is a Php10.00 surcharge.',
+  },
+  UCPB: {
+    name: 'UCPB Connect',
+    description: 'Use your UCPBConnect Online Banking account to make a payment.',
+  },
+  BITC: {
+    name: 'Coins.ph Wallet/Bitcoin',
+    description: 'Pay using Bitcoins or Coins.ph Wallet.',
+  },
+  GRPY: {
+    name: 'GrabPay',
+    description: 'Pay using your GrabPay wallet. NOTE: Any centavo portion will be rounded up to the nearest Peso.',
+  },
+  I2I: {
+    name: 'i2i Rural Banks',
+    description: 'Pay at any I2I-member Rural Bank including Cantilan Bank, City Savings Bank, and many others.',
+  },
+  GCSH: {
+    name: 'GCash',
+    description: 'Pay using Globe GCash. NOTE: A P10 Service Fee may be added.',
   },
 };
 
@@ -348,5 +412,14 @@ export const PAYMENT_CHANNEL = Joi.string()
     'POSB',
     'RDP',
     'RLNT',
+    'MBTC',
+    'PSB',
+    'RCBC',
+    'UBPB',
+    'UCPB',
+    'BITC',
+    'GRPY',
+    'I2I',
+    'GCSH',
   )
   .optional();

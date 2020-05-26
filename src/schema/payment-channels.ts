@@ -87,7 +87,8 @@ export type PaymentChannel =
   | 'BITC'
   | 'GRPY'
   | 'I2I'
-  | 'GCSH';
+  | 'GCSH'
+  | '711';
 
 export type PaymentGroupType =
   | 'ONLINE_BANKING_OR_E_WALLET'
@@ -126,7 +127,6 @@ export const PAYMENT_GROUPS: PaymentGroups = {
       'UCPB',
       'BITC',
       'GRPY',
-      'I2I',
     ],
   },
   OVER_THE_COUNTER_OR_ATM_BANKING: {
@@ -167,6 +167,7 @@ export const PAYMENT_GROUPS: PaymentGroups = {
       'RDP',
       'RLNT',
       'GCSH',
+      '711',
     ],
   },
 };
@@ -370,6 +371,10 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
     name: 'GCash',
     description: 'Pay using Globe GCash. NOTE: A P10 Service Fee may be added.',
   },
+  711: {
+    name: '7-Eleven',
+    description: 'Pay at any 7-11 convenience store in the Philippines nationwide 24x7.',
+  },
 };
 
 
@@ -421,5 +426,6 @@ export const PAYMENT_CHANNEL = Joi.string()
     'GRPY',
     'I2I',
     'GCSH',
+    '711',
   )
   .optional();

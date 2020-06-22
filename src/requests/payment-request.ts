@@ -61,7 +61,7 @@ export default async function requestPayment(
   /**
    * Validate
    */
-  const value: DragonpayPaymentInput = await PAYMENT_REQUEST.validateAsync(payload);
+  const value: DragonpayPaymentInput = await PAYMENT_REQUEST.validate(payload);
 
   /**
    * Generate message from payload

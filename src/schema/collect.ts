@@ -25,14 +25,14 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import Joi from '@hapi/joi';
+import { string } from 'yup';
 
-export const REF_NO = Joi.string()
+export const REF_NO = string()
   .trim()
   .max(20)
   .required();
 
-export const TRANSACTION_ID = Joi.string()
+export const TRANSACTION_ID = string()
   .trim()
   .max(40)
   .required();

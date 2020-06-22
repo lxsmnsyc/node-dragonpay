@@ -1,5 +1,3 @@
-import Joi from '@hapi/joi';
-
 /**
  * @license
  * MIT License
@@ -27,6 +25,8 @@ import Joi from '@hapi/joi';
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
+import { string } from 'yup';
+
 /**
  * 5.4.1.2 Pre-selecting Payment ChannelsDragonpay has very basic support
  * to allow merchant to go directly to a payment channel without having
@@ -92,7 +92,6 @@ export type PaymentChannel =
   | 'BPIA'
   | 'DPAY'
   | 'MLH';
-
 
 export type PaymentGroupType =
   | 'ONLINE_BANKING_OR_E_WALLET'
@@ -488,10 +487,9 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
   },
 };
 
-
-export const PAYMENT_CHANNEL = Joi.string()
+export const PAYMENT_CHANNEL = string()
   .trim()
-  .valid(
+  .oneOf([
     'BOG',
     'BOGX',
     'BDO',
@@ -538,5 +536,5 @@ export const PAYMENT_CHANNEL = Joi.string()
     'BPIA',
     'DPAY',
     'MLH',
-  )
+  ])
   .optional();

@@ -25,7 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import Joi from '@hapi/joi';
+import { string, object } from 'yup';
 
 /**
  * 5.3.1.1
@@ -54,34 +54,34 @@ export interface DragonpayMerchantRequest {
 }
 
 export interface DragonpayMerchantInput {
-  operation: string;
+  operation: 'GETSTATUS' | 'VOID';
   merchantId: string;
   merchantPassword: string;
   transactionId: string;
 }
 
-export const MERCHANT_REQUEST = Joi.object({
-  operation: Joi.string()
+export const MERCHANT_REQUEST = object({
+  operation: string()
     .trim()
     .max(20)
-    .valid(
+    .oneOf([
       'GETSTATUS',
       'VOID',
-    )
+    ])
     .required(),
-  merchantId: Joi.string()
+  merchantId: string()
     .trim()
     .max(20)
     .required(),
-  merchantPassword: Joi.string()
+  merchantPassword: string()
     .trim()
     .max(20)
     .required(),
-  transactionId: Joi.string()
+  transactionId: string()
     .trim()
     .max(40)
     .required(),
-});
+}).required();
 
 export interface DragonpayMerchantResponse {
   status: string;

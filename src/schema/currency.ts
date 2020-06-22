@@ -25,17 +25,18 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import Joi from '@hapi/joi';
+import { string } from 'yup';
 
 export type Currency =
   | 'PHP'
   | 'USD'
   | 'CAD';
 
-export const CURRENCY = Joi.string()
-  .valid(
+export const CURRENCY = string()
+  .trim()
+  .oneOf([
     'PHP',
     'USD',
     'CAD',
-  )
+  ])
   .required();

@@ -25,7 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import Joi from '@hapi/joi';
+import { object, string, number } from 'yup';
 import { Currency, CURRENCY } from './currency';
 import { StatusCode } from './status';
 import {
@@ -121,30 +121,30 @@ export interface DragonpayPaymentResponse {
   param2: string;
 }
 
-export const PAYMENT_REQUEST = Joi.object({
-  merchantId: Joi.string()
+export const PAYMENT_REQUEST = object({
+  merchantId: string()
     .trim()
     .max(20)
     .required(),
-  transactionId: Joi.string()
+  transactionId: string()
     .trim()
     .max(40)
     .required(),
   currency: CURRENCY,
-  amount: Joi.number()
+  amount: number()
     .positive()
     .required(),
-  description: Joi.string()
+  description: string()
     .trim()
     .max(128)
     .required(),
-  email: Joi.string()
+  email: string()
     .trim()
     .max(40)
     .required(),
-  param1: Joi.string()
+  param1: string()
     .optional(),
-  param2: Joi.string()
+  param2: string()
     .optional(),
   processId: PAYMENT_CHANNEL,
-});
+}).required();

@@ -197,7 +197,6 @@ export const PAYMENT_CHANNELS: PaymentMethods = {
     description: 'Use your BDO Retail Internet Banking (RIB) account to make a payment. Read our BDO RIB guide for more details.',
     minTime: 600,
     maxTime: 2130,
-    devOnly: true,
     minAmount: 1.00,
     maxAmount: 1000000.00,
   },

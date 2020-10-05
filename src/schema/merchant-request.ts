@@ -29,10 +29,12 @@ import { string, object } from 'yup';
 
 /**
  * 5.3.1.1
- * Request Parameters using Name-Value PairThese are the parameters
- * passed by the Merchant to the PS via name-value pairs to request
- * for a transaction status.  Name-value pairs may be sent using
- * either HTTP GET or HTTP POST to the MerchantRequest.aspxfunction.
+ * Request Parameters using Name-Value Pair
+ *
+ * These are the parameters passed by the Merchant to the PS
+ * via name-value pairs to request for a transaction status.
+ * Name-value pairs may be sent using either HTTP GET or
+ * HTTP POST to the MerchantRequest.aspxfunction.
  */
 export interface DragonpayMerchantRequest {
   /**
@@ -60,7 +62,7 @@ export interface DragonpayMerchantInput {
   transactionId: string;
 }
 
-export const MERCHANT_REQUEST = object({
+export const MERCHANT_REQUEST = object<DragonpayMerchantInput>({
   operation: string()
     .trim()
     .max(20)

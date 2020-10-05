@@ -28,9 +28,10 @@
 import SHA1 from 'crypto-js/sha1';
 import queryString from 'query-string';
 import {
-  DragonpayPaymentRequest, PAYMENT_REQUEST, DragonpayPaymentInput,
+  PAYMENT_REQUEST,
+  DragonpayPaymentInput,
 } from '../schema/payment-request';
-import { getBaseURLS } from '../utils';
+import URLS from '../utils';
 import { PAYMENT_CHANNELS } from '../schema/payment-channels';
 
 function generateInputMessage(
@@ -90,7 +91,7 @@ export default async function requestPayment(
   /**
    * Transform payload to request
    */
-  const request: DragonpayPaymentRequest = {
+  const query = queryString.stringify({
     merchantid: value.merchantId,
     txnid: value.transactionId,
     amount: value.amount.toFixed(2),
@@ -101,7 +102,7 @@ export default async function requestPayment(
     param1: value.param1,
     param2: value.param2,
     procid: value.processId,
-  };
+  });
 
-  return `${getBaseURLS().Payment}?${queryString.stringify(request)}`;
+  return `${URLS.Payment}?${query}`;
 }

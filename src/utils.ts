@@ -1,4 +1,3 @@
-
 interface URLSet {
   Payment: string;
   MerchantRequest: string;
@@ -7,7 +6,7 @@ interface URLSet {
   EmailInstruction: string;
 }
 
-export const PRODUCTION_URL: URLSet = {
+const PRODUCTION_URL: URLSet = {
   Payment: 'https://gw.dragonpay.ph/Pay.aspx',
   MerchantRequest: 'https://gw.dragonpay.ph/MerchantRequest.aspx',
   CollectByRefNo: 'https://gw.dragonpay.ph/api/collect/v1/',
@@ -15,7 +14,7 @@ export const PRODUCTION_URL: URLSet = {
   EmailInstruction: 'https://gw.dragonpay.ph/Bank/GetEmailInstruction.aspx',
 } as const;
 
-export const TEST_URL: URLSet = {
+const TEST_URL: URLSet = {
   Payment: 'https://test.dragonpay.ph/Pay.aspx',
   MerchantRequest: 'https://test.dragonpay.ph/MerchantRequest.aspx',
   CollectByRefNo: 'https://test.dragonpay.ph/api/collect/v1/',
@@ -23,12 +22,6 @@ export const TEST_URL: URLSet = {
   EmailInstruction: 'https://test.dragonpay.ph/Bank/GetEmailInstruction.aspx',
 } as const;
 
-let URLS = TEST_URL;
+const URL = process.env.NODE_ENV ? PRODUCTION_URL : TEST_URL;
 
-export function getBaseURLS(): URLSet {
-  return URLS;
-}
-
-export function useProduction(flag: boolean): void {
-  URLS = flag ? PRODUCTION_URL : TEST_URL;
-}
+export default URL;

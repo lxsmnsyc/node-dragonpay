@@ -85,10 +85,6 @@ export const MERCHANT_REQUEST = object<DragonpayMerchantInput>({
     .required(),
 }).required();
 
-export interface DragonpayMerchantResponse {
-  status: string;
-}
-
 export interface DragonpayMerchantPartialInput {
   merchantId: string;
   merchantPassword: string;

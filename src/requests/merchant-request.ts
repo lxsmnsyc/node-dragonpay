@@ -30,13 +30,12 @@ import queryString from 'query-string';
 import {
   DragonpayMerchantInput,
   MERCHANT_REQUEST,
-  DragonpayMerchantResponse,
 } from '../schema/merchant-request';
 import URLS from '../utils';
 
 export default async function requestMerchant(
   payload: DragonpayMerchantInput,
-): Promise<DragonpayMerchantResponse> {
+): Promise<string> {
   const value: DragonpayMerchantInput = await MERCHANT_REQUEST.validate(payload);
 
   const query = queryString.stringify({
@@ -47,7 +46,7 @@ export default async function requestMerchant(
   });
 
   const data = await unfetch(`${URLS.MerchantRequest}?${query}`);
-  const result = await data.json() as DragonpayMerchantResponse;
+  const result = await data.text();
 
   return result;
 }

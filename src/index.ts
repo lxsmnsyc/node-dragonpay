@@ -37,7 +37,7 @@ export { DragonpayCollectResponse } from './schema/collect';
 export { Currency } from './schema/currency';
 export * from './schema/error-codes';
 export { DragonpayEmailInstruction } from './schema/instruction';
-export { DragonpayMerchantInput, DragonpayMerchantResponse } from './schema/merchant-request';
+export { DragonpayMerchantInput } from './schema/merchant-request';
 export * from './schema/payment-channels';
 export { DragonpayPaymentInput, DragonpayPaymentResponse } from './schema/payment-request';
 export * from './schema/status';

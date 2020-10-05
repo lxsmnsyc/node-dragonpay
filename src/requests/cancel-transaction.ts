@@ -25,12 +25,12 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import { DragonpayMerchantPartialInput, DragonpayMerchantResponse } from '../schema/merchant-request';
+import { DragonpayMerchantPartialInput } from '../schema/merchant-request';
 import requestMerchant from './merchant-request';
 
 export default function cancelTransaction(
   payload: DragonpayMerchantPartialInput,
-): Promise<DragonpayMerchantResponse> {
+): Promise<string> {
   return requestMerchant({
     operation: 'VOID',
     ...payload,
